@@ -1,0 +1,253 @@
+/* ============================================================
+   tokens.css — 設計變數（顏色、字體、間距）
+   修改這裡的值可以全站換色
+   ============================================================ */
+
+:root {
+  /* 背景層次 */
+  --bg-0: #080D1A;
+  --bg-1: #0F1629;
+  --bg-2: #141D35;
+  --bg-3: #1A2540;
+  --bg-hover: #1E2D4A;
+
+  /* 邊框 */
+  --border: rgba(255, 255, 255, 0.07);
+  --border-focus: rgba(99, 179, 237, 0.5);
+
+  /* 語意色 */
+  --up:   #00D37F;
+  --down: #FF4757;
+  --warn: #FFB800;
+  --info: #3B82F6;
+
+  /* 半透明背景版 */
+  --up-bg:   rgba(0, 211, 127, 0.10);
+  --down-bg: rgba(255, 71, 87, 0.10);
+  --warn-bg: rgba(255, 184, 0, 0.10);
+  --info-bg: rgba(59, 130, 246, 0.10);
+
+  /* 邊框色版 */
+  --up-border:   rgba(0, 211, 127, 0.30);
+  --down-border: rgba(255, 71, 87, 0.30);
+  --warn-border: rgba(255, 184, 0, 0.30);
+  --info-border: rgba(59, 130, 246, 0.30);
+
+  /* 文字 */
+  --text-primary:   #EEF2FF;
+  --text-secondary: #8892A4;
+  --text-dim:       #3D4B60;
+
+  /* 字體 */
+  --font-ui:   'Inter', system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+
+  /* 圓角 */
+  --radius-sm: 8px;
+  --radius:    12px;
+  --radius-lg: 16px;
+
+  /* 陰影 */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+
+  /* 過渡 */
+  --transition: 150ms ease;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg-0);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography helpers ────────────────────────────────── */
+.mono { font-family: var(--font-mono); }
+.up   { color: var(--up);   }
+.down { color: var(--down); }
+.warn { color: var(--warn); }
+.info { color: var(--info); }
+.muted { color: var(--text-secondary); }
+.dim   { color: var(--text-dim); }
+
+/* ── Card ──────────────────────────────────────────────── */
+.card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+/* ── Stat card ─────────────────────────────────────────── */
+.stat-card {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.stat-label  { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.8px; }
+.stat-value  { font-size: 26px; font-family: var(--font-mono); font-weight: 600; margin: 6px 0 4px; line-height: 1; }
+.stat-change { font-size: 12px; font-family: var(--font-mono); }
+
+/* ── Table ─────────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  text-align: left; padding: 8px 12px;
+  color: var(--text-dim); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td { padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-hover); }
+
+/* ── Tag / Badge ───────────────────────────────────────── */
+.tag {
+  display: inline-block; padding: 2px 8px;
+  border-radius: 4px; font-size: 11px; font-weight: 600;
+}
+.tag-up   { background: var(--up-bg);   color: var(--up);   border: 1px solid var(--up-border); }
+.tag-down { background: var(--down-bg); color: var(--down); border: 1px solid var(--down-border); }
+.tag-info { background: var(--info-bg); color: #93C5FD;     border: 1px solid var(--info-border); }
+.tag-warn { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn-border); }
+
+/* ── Progress bar ──────────────────────────────────────── */
+.progress-wrap { background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+
+/* ── KV item ───────────────────────────────────────────── */
+.kv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kv-item { background: var(--bg-2); border-radius: var(--radius-sm); padding: 12px; }
+.kv-key  { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+.kv-val  { font-size: 15px; font-family: var(--font-mono); font-weight: 600; }
+
+/* ── Callout ───────────────────────────────────────────── */
+.callout {
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  font-size: 12px; display: flex; gap: 10px; align-items: flex-start;
+}
+.callout-warn { background: var(--warn-bg); border: 1px solid var(--warn-border); color: #FFD666; }
+.callout-info { background: var(--info-bg); border: 1px solid var(--info-border); color: #93C5FD; }
+.callout-down { background: var(--down-bg); border: 1px solid var(--down-border); color: #FF8A94; }
+
+/* ── Chip row ──────────────────────────────────────────── */
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.chip {
+  padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--border);
+  color: var(--text-secondary); background: var(--bg-2);
+  transition: all var(--transition);
+}
+.chip:hover  { background: var(--bg-hover); color: var(--text-primary); }
+.chip.active { background: var(--info-bg); color: #93C5FD; border-color: var(--info-border); }
+
+/* ── Loading skeleton ──────────────────────────────────── */
+@keyframes skeleton-pulse { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+.skeleton {
+  background: var(--bg-3); border-radius: 4px;
+  animation: skeleton-pulse 1.4s ease infinite;
+}
+
+/* ── Divider ───────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+/* ── Gauge (恐慌儀表盤) ────────────────────────────────── */
+.gauge-wrapper { display: flex; flex-direction: column; align-items: center; padding: 8px 0; }
+.gauge-value { font-family: var(--font-mono); font-size: 36px; font-weight: 600; text-align: center; margin-top: 8px; }
+.gauge-label { font-size: 12px; text-align: center; font-weight: 600; letter-spacing: 1px; margin-top: 4px; }
+.gauge-scale { display: flex; justify-content: space-between; width: 180px; font-size: 10px; color: var(--text-dim); margin-top: 6px; }
+.gauge-zones { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+.gauge-zone  { font-size: 10px; padding: 3px 8px; border-radius: 10px; font-weight: 600; }
+
+/* ── EPS bar ───────────────────────────────────────────── */
+.eps-row  { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.eps-q    { font-size: 11px; color: var(--text-secondary); width: 44px; flex-shrink: 0; }
+.eps-track { flex: 1; background: rgba(255,255,255,0.05); border-radius: 3px; height: 20px; position: relative; overflow: hidden; }
+.eps-fill  { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; transition: width 0.6s ease; }
+.eps-val   { font-size: 11px; font-family: var(--font-mono); font-weight: 600; }
+
+/* ── Mini sparkline bars ───────────────────────────────── */
+.mini-bars { display: flex; align-items: flex-end; gap: 2px; height: 36px; }
+.mini-bar  { width: 7px; border-radius: 2px 2px 0 0; min-height: 2px; opacity: 0.8; }
+.mini-bar:hover { opacity: 1; }
+
+/* ── Search ────────────────────────────────────────────── */
+.search-bar {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 16px;
+  transition: border-color var(--transition);
+}
+.search-bar:focus-within { border-color: var(--border-focus); }
+.search-bar input {
+  background: none; border: none; outline: none;
+  color: var(--text-primary); font-size: 14px; flex: 1;
+  font-family: var(--font-ui);
+}
+.search-bar input::placeholder { color: var(--text-dim); }
+
+/* ── Heatmap ───────────────────────────────────────────── */
+.heatmap { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.heatmap-cell {
+  aspect-ratio: 1; border-radius: 5px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; font-size: 9px; font-weight: 700;
+  transition: transform var(--transition); overflow: hidden;
+  min-height: 50px;
+}
+.heatmap-cell:hover { transform: scale(1.08); z-index: 2; }
+
+/* ── Event card ────────────────────────────────────────── */
+.event-card {
+  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  border-left-width: 3px;
+  border-left-style: solid;
+}
+.event-card.past     { border-left-color: var(--info); }
+.event-card.upcoming { border-left-color: var(--warn); }
+.event-card.dividend { border-left-color: var(--up);   }
+.event-title  { font-size: 13px; font-weight: 600; }
+.event-date   { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+.event-summary{ font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.6; }
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+/* ── Grid helpers ──────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .heatmap { grid-template-columns: repeat(5, 1fr); }
+  .kv-grid { grid-template-columns: 1fr 1fr; }
+  .card { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
