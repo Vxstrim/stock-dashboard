@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#080D1A">
+  <title>MarketCore｜股市數據中心</title>
+
+  <!-- PWA manifest（讓手機可加到主畫面） -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- 字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- 樣式（順序重要：tokens → layout → 其他） -->
+  <link rel="stylesheet" href="style/tokens.css">
+  <link rel="stylesheet" href="style/layout.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- 側邊欄（桌面） -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">MarketCore</div>
+      <div class="logo-sub">股市數據中心</div>
+    </div>
+    <div id="sidebar-nav"></div>
+    <div class="market-pulse">
+      <div class="pulse-title">即時脈動</div>
+      <div class="pulse-row"><span class="pulse-label">加權指數</span><span class="pulse-val up">21,847</span></div>
+      <div class="pulse-row"><span class="pulse-label">S&amp;P 500</span><span class="pulse-val up">5,821</span></div>
+      <div class="pulse-row"><span class="pulse-label">VIX</span><span class="pulse-val muted">18.4</span></div>
+      <div class="pulse-row"><span class="pulse-label">TVIX</span><span class="pulse-val down">23.7</span></div>
+    </div>
+  </nav>
+
+  <!-- 主內容區 -->
+  <div class="main-content">
+
+    <!-- 頂部欄（手機） -->
+    <header class="topbar">
+      <span class="topbar-logo">MarketCore</span>
+      <span class="topbar-time" id="topbar-clock"></span>
+    </header>
+
+    <!-- 頁面內容 -->
+    <div class="page-container" id="page-content">
+      <!-- 由 app.js 動態注入 -->
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 底部 Tab Bar（手機） -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner" id="bottom-nav-inner"></div>
+</nav>
+
+<!-- 手機頂欄時鐘 -->
+<script>
+  setInterval(() => {
+    const el = document.getElementById('topbar-clock');
+    if (el) el.textContent = new Date().toLocaleTimeString('zh-TW', { hour:'2-digit', minute:'2-digit' });
+  }, 1000);
+</script>
+
+<!-- 主程式（ES module） -->
+<script type="module" src="src/app.js"></script>
+
+</body>
+</html>
